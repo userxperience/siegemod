@@ -40,7 +40,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> NEXUS_BLOCK = registerBlock("nexus",
             () -> new NexusBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.SIEGE_TAB);
+                .strength(6f).requiresCorrectToolForDrops().lightLevel(state -> state.getValue(NexusBlock.ACTIVE) ? 15 : 0)), ModCreativeModeTab.SIEGE_TAB);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
