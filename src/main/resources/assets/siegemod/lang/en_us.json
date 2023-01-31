@@ -1,5 +1,6 @@
 {
   "item.siegemod.crystal": "Crystal",
+  "item.siegemod.raw_crystal": "Raw Crystal",
 
-  "itemGroup.siegeModTab": "Siegemod"
+  "itemGroup.siegetab": "Siege Mod"
 }

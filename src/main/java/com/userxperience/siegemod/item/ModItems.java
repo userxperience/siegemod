@@ -14,7 +14,10 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, SiegeMod.MODID);
 
     public static final RegistryObject<Item> CRYSTAL = ITEMS.register("crystal",
-            () -> new Item(new Item.Properties().tab(ModItemGroup.TAB_SIEGEMOD)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.SIEGE_TAB)));
+
+    public static final RegistryObject<Item> RAW_CRYSTAL = ITEMS.register("raw_crystal",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.SIEGE_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
