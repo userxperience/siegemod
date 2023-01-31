@@ -1,7 +1,7 @@
 package com.userxperience.siegemod.item;
 
 import com.userxperience.siegemod.SiegeMod;
-import net.minecraft.world.item.CreativeModeTab;
+import com.userxperience.siegemod.item.custom.ChargedAmethystShardItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,6 +18,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> RAW_CRYSTAL = ITEMS.register("raw_crystal",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.SIEGE_TAB)));
+
+    public static final RegistryObject<Item> CHARGED_AMETHYST_SHARD = ITEMS.register("charged_amethyst_shard",
+            () -> new ChargedAmethystShardItem(new Item.Properties().tab(ModCreativeModeTab.SIEGE_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

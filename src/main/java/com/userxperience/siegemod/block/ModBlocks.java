@@ -22,7 +22,6 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SiegeMod.MODID);
 
-
     public static final RegistryObject<Block> CRYSTAL_BLOCK = registerBlock("crystal_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.SIEGE_TAB);

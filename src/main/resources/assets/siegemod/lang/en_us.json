@@ -1,6 +1,7 @@
 {
   "item.siegemod.crystal": "Crystal",
   "item.siegemod.raw_crystal": "Raw Crystal",
+  "item.siegemod.charged_amethyst_shard" : "Charged Amethyst Shard",
 
   "block.siegemod.crystal_block": "Block of Crystal",
   "block.siegemod.crystal_ore": "Crystal Ore",
