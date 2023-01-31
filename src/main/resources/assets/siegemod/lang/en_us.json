@@ -2,5 +2,9 @@
   "item.siegemod.crystal": "Crystal",
   "item.siegemod.raw_crystal": "Raw Crystal",
 
+  "block.siegemod.crystal_block": "Block of Crystal",
+  "block.siegemod.crystal_ore": "Crystal Ore",
+  "block.siegemod.deepslate_crystal_ore": "Deepslate Crystal Ore",
+
   "itemGroup.siegetab": "Siege Mod"
 }

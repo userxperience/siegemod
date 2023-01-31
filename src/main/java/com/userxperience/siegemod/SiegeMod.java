@@ -1,6 +1,7 @@
 package com.userxperience.siegemod;
 
 import com.mojang.logging.LogUtils;
+import com.userxperience.siegemod.block.ModBlocks;
 import com.userxperience.siegemod.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.BlockItem;
@@ -46,6 +47,7 @@ public class SiegeMod
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
