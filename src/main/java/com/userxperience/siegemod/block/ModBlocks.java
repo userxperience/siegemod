@@ -2,6 +2,7 @@ package com.userxperience.siegemod.block;
 
 import com.userxperience.siegemod.SiegeMod;
 import com.userxperience.siegemod.block.custom.NexusBlock;
+import com.userxperience.siegemod.block.custom.SiegeCoreBlock;
 import com.userxperience.siegemod.item.ModCreativeModeTab;
 import com.userxperience.siegemod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -41,6 +42,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> NEXUS_BLOCK = registerBlock("nexus",
             () -> new NexusBlock(BlockBehaviour.Properties.of(Material.STONE)
                 .strength(6f).requiresCorrectToolForDrops().lightLevel(state -> state.getValue(NexusBlock.ACTIVE) ? 15 : 0)), ModCreativeModeTab.SIEGE_TAB);
+
+    public static final RegistryObject<Block> SIEGE_CORE = registerBlock("siege_core",
+            () -> new SiegeCoreBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.SIEGE_TAB);
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

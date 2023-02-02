@@ -1,9 +1,17 @@
 package com.userxperience.siegemod;
 
 import com.mojang.logging.LogUtils;
+import com.userxperience.siegemod.entity.ModEntityTypes;
+import com.userxperience.siegemod.entity.client.SiegeZombieRenderer;
+import com.userxperience.siegemod.recipe.ModRecipes;
+import com.userxperience.siegemod.screen.SiegeCoreScreen;
 import com.userxperience.siegemod.block.ModBlocks;
+import com.userxperience.siegemod.block.entity.ModBlockEntities;
 import com.userxperience.siegemod.item.ModItems;
+import com.userxperience.siegemod.screen.ModMenuTypes;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -23,6 +31,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(SiegeMod.MODID)
@@ -30,6 +39,8 @@ public class SiegeMod
 {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "siegemod";
+    // Define mod id in a common place for everything to reference
+    public static final String MOD_ID = "siegemod";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
@@ -49,6 +60,14 @@ public class SiegeMod
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
+        ModRecipes.register(modEventBus);
+        ModEntityTypes.register(modEventBus);
+
+        GeckoLib.initialize();
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -59,6 +78,7 @@ public class SiegeMod
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -86,6 +106,13 @@ public class SiegeMod
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+            MenuScreens.register(ModMenuTypes.SIEGE_CORE_MENU.get(), SiegeCoreScreen::new);
+
+            EntityRenderers.register(ModEntityTypes.SIEGE_ZOMBIE.get(), SiegeZombieRenderer::new);
         }
     }
+
+
+
 }
