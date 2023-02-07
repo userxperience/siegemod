@@ -1,5 +1,8 @@
 package com.userxperience.siegemod.block.entity;
 
+import com.userxperience.siegemod.SiegeMod;
+import com.userxperience.siegemod.entity.ModEntityTypes;
+import com.userxperience.siegemod.entity.custom.SiegeZombieEntity;
 import com.userxperience.siegemod.item.ModItems;
 import com.userxperience.siegemod.recipe.SiegeCoreRecipe;
 import com.userxperience.siegemod.screen.SiegeCoreMenu;
@@ -10,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -142,7 +146,10 @@ public class SiegeCoreBlockEntity extends BlockEntity implements MenuProvider {
 
         if (pEntity.progress >= pEntity.maxProgress) {
             craftItem(pEntity);
-            }
+            SiegeZombieEntity siegeZombie = new SiegeZombieEntity(ModEntityTypes.SIEGE_ZOMBIE.get(), level);
+            siegeZombie.setPos(pos.getX(), pos.getY(), pos.getZ());
+            level.addFreshEntity(siegeZombie);
+        }
         } else {
             pEntity.resetProgress();
             setChanged(level, pos, state);
