@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "active=false": { "model": "siegemod:block/nexus_inactive" },
+    "active=true": { "model": "siegemod:block/nexus_active" }
+  }
+}

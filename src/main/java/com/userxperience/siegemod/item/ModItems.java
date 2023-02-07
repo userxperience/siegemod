@@ -16,17 +16,17 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, SiegeMod.MODID);
 
     public static final RegistryObject<Item> CRYSTAL = ITEMS.register("crystal",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.SIEGE_TAB)));
+            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> RAW_CRYSTAL = ITEMS.register("raw_crystal",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.SIEGE_TAB)));
+            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> CHARGED_AMETHYST_SHARD = ITEMS.register("charged_amethyst_shard",
-            () -> new ChargedAmethystShardItem(new Item.Properties().tab(ModCreativeModeTab.SIEGE_TAB)));
+            () -> new ChargedAmethystShardItem(new Item.Properties()));
 
     public static final RegistryObject<Item> SIEGE_ZOMBIE_SPAWN_EGG = ITEMS.register("siege_zombie_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntityTypes.SIEGE_ZOMBIE, 0x000000, 0x000000,
-                    new Item.Properties().tab(ModCreativeModeTab.SIEGE_TAB)));
+                    new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

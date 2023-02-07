@@ -1,0 +1,15 @@
+{
+  "item.siegemod.crystal": "Crystal",
+  "item.siegemod.raw_crystal": "Raw Crystal",
+  "item.siegemod.charged_amethyst_shard" : "Charged Amethyst Shard",
+  "item.siegemod.siege_zombie_spawn_egg": "Siege Zombie Spawn Egg",
+
+  "block.siegemod.crystal_block": "Block of Crystal",
+  "block.siegemod.crystal_ore": "Crystal Ore",
+  "block.siegemod.deepslate_crystal_ore": "Deepslate Crystal Ore",
+  "block.siegemod.nexus": "Nexus",
+  "block.siegemod.siege_core": "Siege Core",
+
+
+  "itemGroup.siegetab": "Siege Mod"
+}

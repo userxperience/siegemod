@@ -3,10 +3,9 @@ package com.userxperience.siegemod.entity.client;
 import com.userxperience.siegemod.SiegeMod;
 import com.userxperience.siegemod.entity.custom.SiegeZombieEntity;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SiegeZombieModel extends AnimatedGeoModel<SiegeZombieEntity> {
+public class SiegeZombieModel extends GeoModel<SiegeZombieEntity> {
 
 
     @Override

@@ -1,0 +1,11 @@
+{
+  "type": "siegemod:gem_charging",
+  "ingredients": [
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "output": {
+    "item": "siegemod:charged_amethyst_shard"
+  }
+}

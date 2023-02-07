@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "siegemod:crystal_block"
+    }
+  ],
+  "result": {
+    "item": "siegemod:crystal",
+    "count": 9
+  }
+}

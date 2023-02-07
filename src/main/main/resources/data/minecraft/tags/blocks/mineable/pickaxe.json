@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "siegemod:crystal_ore",
+    "siegemod:crystal_block",
+    "siegemod:deepslate_crystal_ore"
+  ]
+}

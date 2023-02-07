@@ -1,14 +1,14 @@
 package com.userxperience.siegemod;
 
 import com.mojang.logging.LogUtils;
-import com.userxperience.siegemod.entity.ModEntityTypes;
-import com.userxperience.siegemod.entity.client.SiegeZombieRenderer;
-import com.userxperience.siegemod.recipe.ModRecipes;
-import com.userxperience.siegemod.screen.SiegeCoreScreen;
 import com.userxperience.siegemod.block.ModBlocks;
 import com.userxperience.siegemod.block.entity.ModBlockEntities;
+import com.userxperience.siegemod.entity.ModEntityTypes;
+import com.userxperience.siegemod.entity.client.SiegeZombieRenderer;
 import com.userxperience.siegemod.item.ModItems;
+import com.userxperience.siegemod.recipe.ModRecipes;
 import com.userxperience.siegemod.screen.ModMenuTypes;
+import com.userxperience.siegemod.screen.SiegeCoreScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -20,18 +20,19 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
-import software.bernie.geckolib3.GeckoLib;
+import software.bernie.geckolib.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(SiegeMod.MODID)
@@ -51,7 +52,7 @@ public class SiegeMod
     // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)));
     // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
-    public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
+    public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
 
     public SiegeMod()
     {
@@ -79,6 +80,7 @@ public class SiegeMod
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        //TODO: Add a creative tab for the mod, or add the items to an existing tab
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)

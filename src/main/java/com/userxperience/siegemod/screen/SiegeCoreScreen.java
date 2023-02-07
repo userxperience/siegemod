@@ -32,7 +32,11 @@ public class SiegeCoreScreen extends AbstractContainerScreen<SiegeCoreMenu> {
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
         renderProgressArrow(pPoseStack, x, y);
+
+        this.render(pPoseStack, x + 55, y + 15);
     }
+
+
 
     private void renderProgressArrow(PoseStack pPoseStack, int x, int y) {
         if(menu.isCrafting()) {
@@ -40,10 +44,19 @@ public class SiegeCoreScreen extends AbstractContainerScreen<SiegeCoreMenu> {
         }
     }
 
-    @Override
-    public void render(PoseStack pPoseStack, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack pPoseStack, int mouseX, int mouseY) {
         renderBackground(pPoseStack);
-        super.render(pPoseStack, mouseX, mouseY, delta);
+        RenderSystem.enableBlend();
+        pPoseStack.pushPose();
+        {
+            pPoseStack.translate(mouseX, mouseY, 0);
+        }
+        pPoseStack.popPose();
+        RenderSystem.setShaderColor(1, 1, 1, 1);
+        RenderSystem.disableBlend();
         renderTooltip(pPoseStack, mouseX, mouseY);
     }
+
+    //TODO fix the issue where the menu is darkened
+
 }
