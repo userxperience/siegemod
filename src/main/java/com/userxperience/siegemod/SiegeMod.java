@@ -12,12 +12,15 @@ import com.userxperience.siegemod.screen.SiegeCoreScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
@@ -80,11 +83,12 @@ public class SiegeMod
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        //TODO: Add a creative tab for the mod, or add the items to an existing tab
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        SpawnPlacements.register(ModEntityTypes.SIEGE_ZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Monster::checkMonsterSpawnRules);
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));

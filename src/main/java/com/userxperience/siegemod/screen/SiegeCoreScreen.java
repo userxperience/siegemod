@@ -57,6 +57,4 @@ public class SiegeCoreScreen extends AbstractContainerScreen<SiegeCoreMenu> {
         renderTooltip(pPoseStack, mouseX, mouseY);
     }
 
-    //TODO fix the issue where the menu is darkened
-
 }
