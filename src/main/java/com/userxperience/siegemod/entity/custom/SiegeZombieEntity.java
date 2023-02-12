@@ -1,5 +1,6 @@
 package com.userxperience.siegemod.entity.custom;
 
+import com.userxperience.siegemod.ai.SiegeZombieBreakDoorGoal;
 import com.userxperience.siegemod.block.ModBlocks;
 import com.userxperience.siegemod.block.entity.ModBlockEntities;
 
@@ -48,10 +49,13 @@ import javax.annotation.Nullable;
 
 public class SiegeZombieEntity extends Zombie implements GeoEntity {
     private AnimatableInstanceCache factory = new SingletonAnimatableInstanceCache(this);
+
     private static final Predicate<Difficulty> DOOR_BREAKING_PREDICATE = (difficulty) -> {
         return difficulty == Difficulty.HARD;
     };
-    private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, DOOR_BREAKING_PREDICATE);
+    private final SiegeZombieBreakDoorGoal breakDoorGoal = new SiegeZombieBreakDoorGoal(this, DOOR_BREAKING_PREDICATE);
+
+    private boolean canBreakDoors;
 
     public SiegeZombieEntity(EntityType<? extends Zombie> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -71,7 +75,7 @@ public class SiegeZombieEntity extends Zombie implements GeoEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new com.userxperience.siegemod.ai.BreakDoorGoal(this, DOOR_BREAKING_PREDICATE));
+        this.goalSelector.addGoal(2, new com.userxperience.siegemod.ai.SiegeZombieBreakDoorGoal(this, DOOR_BREAKING_PREDICATE));
         this.goalSelector.addGoal(4, new SiegeZombieAttackSiegeCoreGoal(this, 1.0D, 3));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
@@ -213,5 +217,23 @@ public class SiegeZombieEntity extends Zombie implements GeoEntity {
         this.handleAttributes(f);
         return pSpawnData;
     }
+    public void setCanBreakDoors(boolean pCanBreakDoors) {
+        if (this.supportsBreakDoorGoal() && GoalUtils.hasGroundPathNavigation(this)) {
+            if (this.canBreakDoors != pCanBreakDoors) {
+                this.canBreakDoors = pCanBreakDoors;
+                ((GroundPathNavigation)this.getNavigation()).setCanOpenDoors(pCanBreakDoors);
+                if (pCanBreakDoors) {
+                    this.goalSelector.addGoal(1, this.breakDoorGoal);
+                } else {
+                    this.goalSelector.removeGoal(this.breakDoorGoal);
+                }
+            }
+        } else if (this.canBreakDoors) {
+            this.goalSelector.removeGoal(this.breakDoorGoal);
+            this.canBreakDoors = false;
+        }
 
+    }
 }
+
+
